@@ -1,10 +1,8 @@
-function minimumTotal(triangle) {
-  const n = triangle.length;
-  const dp = new Array(n + 1).fill(0);
-  for (let i = n - 1; i >= 0; i--) {
-    for (let j = 0; j <= i; j++) {
-      dp[j] = triangle[i][j] + Math.min(dp[j], dp[j + 1]);
-    }
-  }
-  return dp[0];
+function minDepth(root) {
+  if (!root) return 0;
+  if (!root.left && !root.right) return 1;
+  let min = Infinity;
+  if (root.left) min = Math.min(min, minDepth(root.left));
+  if (root.right) min = Math.min(min, minDepth(root.right));
+  return min + 1;
 }
